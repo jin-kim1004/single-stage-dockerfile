@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   single_stage:
     docker:
-      - image: circleci/node:18
+      - image: circleci/node:lts
     steps:
       - checkout
       - setup_remote_docker
@@ -14,7 +14,7 @@ jobs:
 
   multi_stage:
     docker:
-      - image: circleci/node:18
+      - image: circleci/node:lts
     steps:
       - checkout
       - setup_remote_docker

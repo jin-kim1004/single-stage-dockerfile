@@ -2,26 +2,26 @@ version: 2.1
 jobs:
   single_stage:
     docker:
-      - image: circleci/node:lts
+      - image: circleci/node:18
     steps:
       - checkout
       - setup_remote_docker
       - run:
           name: Build Single-Stage Image
           command: |
-            docker build -t single-stage-app -f ../app/Dockerfile.single .
+            docker build -t single-stage-app -f app/Dockerfile.single .
             docker images | grep single-stage-app
 
   multi_stage:
     docker:
-      - image: circleci/node:lts
+      - image: circleci/node:18
     steps:
       - checkout
       - setup_remote_docker
       - run:
           name: Build Multi-Stage Image
           command: |
-            docker build -t multi-stage-app -f ../app/Dockerfile.multi .
+            docker build -t multi-stage-app -f app/Dockerfile.multi .
             docker images | grep multi-stage-app
 
 workflows:

@@ -1,0 +1,13 @@
+{
+  "name": "docker-ci-app",
+  "version": "1.0.0",
+  "description": "Demo app for testing single-stage vs. multi-stage builds in CircleCI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'Building application...'"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

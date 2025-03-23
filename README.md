@@ -10,5 +10,5 @@ This repository demonstrates how multi-stage Docker builds improve performance i
    cd multi-stage-docker-ci
 
 
-   first push
+   first push again
 

@@ -1,11 +1,32 @@
-# Single-stage build
-FROM node:18
+version: 2.1
+jobs:
+  single_stage:
+    docker:
+      - image: circleci/node:18
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Single-Stage Image
+          command: |
+            docker build -t single-stage-app -f Dockerfile.single .
+            docker images | grep single-stage-app
 
-WORKDIR /app
+  multi_stage:
+    docker:
+      - image: circleci/node:18
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Multi-Stage Image
+          command: |
+            docker build -t multi-stage-app -f Dockerfile.multi .
+            docker images | grep multi-stage-app
 
-COPY package.json package-lock.json ./
-RUN npm install
-
-COPY . .
-
-CMD ["node", "server.js"]
+workflows:
+  version: 2
+  compare_builds:
+    jobs:
+      - single_stage
+      - multi_stage
